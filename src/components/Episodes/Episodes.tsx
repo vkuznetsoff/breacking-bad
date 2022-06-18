@@ -6,14 +6,14 @@ import { useAppSelector, useAppDispatch } from '../../store/hooks'
 import { RootState } from "../../store";
 import SingleEpisode from "../SingleEpisode/SingleEpisode";
 import { FC } from "react";
-import { fetchEpisodes } from "../../store/episodeSlice";
+import { fetchEpisodes, sortEpisodesAsc, sortEpisodesDesc } from "../../store/episodeSlice";
 
 import "./Episodes.css";
 
 
 
 const Episodes: FC = () => {
-  const {episodes, loading, error} = useAppSelector((state: RootState) => state.episodes)
+  const { episodes, loading, error } = useAppSelector((state: RootState) => state.episodes)
   const dispatch = useAppDispatch()
 
   // const  descSort: Number = (a: Number, b: Number) => {
@@ -24,7 +24,13 @@ const Episodes: FC = () => {
 
   // episodes.sort( descSort(a.character.length,b.character.length)  )
 
+  const acsSortBtn = () => {
+    dispatch(sortEpisodesAsc())
+  }
 
+  const descSortBtn = () => {
+    dispatch(sortEpisodesDesc())
+  }
 
   return (
     <div className="wrapper">
@@ -41,8 +47,8 @@ const Episodes: FC = () => {
         {error && <h1>{error}</h1>}
         <div className="content__episodes">
           <div className="sort__btns">
-            <div className="content__btn sortbtn">По возрастанию</div>
-            <div className="content__btn sortbtn">По убыванию</div>
+            <div className="content__btn sortbtn" onClick={acsSortBtn}>По возрастанию</div>
+            <div className="content__btn sortbtn" onClick={descSortBtn}>По убыванию</div>
           </div>
 
           {

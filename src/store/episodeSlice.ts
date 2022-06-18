@@ -110,8 +110,12 @@ const episodeSlice = createSlice({
       state.episodes = state.episodes.filter((i) => i.episode_id !== action.payload);
     },
 
-    sortEpisodes(state) {
-        state.episodes.sort()
+    sortEpisodesAsc(state) {
+        state.episodes.sort((a:EpisodeType , b: EpisodeType ) => +a.charactersLen - +(b.charactersLen))
+    },
+
+    sortEpisodesDesc(state) {
+        state.episodes.sort((a:EpisodeType , b: EpisodeType ) => +b.charactersLen - +(a.charactersLen))
     },
 
     incCharacters(state, action: PayloadAction<Number>) {
@@ -151,6 +155,6 @@ const episodeSlice = createSlice({
 
 });
 
-export const { removeEpisode, incCharacters, decCharacters } = episodeSlice.actions;
+export const { removeEpisode, incCharacters, decCharacters, sortEpisodesAsc, sortEpisodesDesc } = episodeSlice.actions;
 
 export default episodeSlice.reducer;
