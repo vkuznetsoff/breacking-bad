@@ -13,7 +13,7 @@ import "./Episodes.css";
 
 
 const Episodes: FC = () => {
-  const { episodes, loading, error } = useAppSelector((state: RootState) => state.episodes)
+  const { episodes, loading, error, getEpisodes } = useAppSelector((state: RootState) => state.episodes)
   const dispatch = useAppDispatch()
 
   // const  descSort: Number = (a: Number, b: Number) => {
@@ -39,13 +39,15 @@ const Episodes: FC = () => {
       </div>
       <div className="content">
 
-        <div className="content__btn">
+        {!getEpisodes && <div className="content__btn">
           <div className="btn__text" onClick={() => dispatch(fetchEpisodes())}>Загрузить эпизоды</div>
-        </div>
+        </div>}
 
         {loading && <h2>Loading...</h2>}
+        
         {error && <h1>{error}</h1>}
-        <div className="content__episodes">
+
+        {getEpisodes && <div className="content__episodes">
           <div className="sort__btns">
             <div className="content__btn sortbtn" onClick={acsSortBtn}>По возрастанию</div>
             <div className="content__btn sortbtn" onClick={descSortBtn}>По убыванию</div>
@@ -54,7 +56,7 @@ const Episodes: FC = () => {
           {
             episodes.map(e => <SingleEpisode key={String(e.episode_id)} item={e} />)
           }
-        </div>
+        </div>}
 
       </div>
     </div>

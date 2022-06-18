@@ -1,7 +1,7 @@
 .app {
-  background: no-repeat url("./assets/images/walls.jpg");
+  background: repeat url("./assets/images/walls.jpg");
   min-height: 100vh;
-  background-size: cover;
+  background-size: 100%;
   font-size: 24pt;
  
   
@@ -11,7 +11,8 @@
 .app__opacity {
   background: rgba(16, 20, 0, 0.6);
   color: #faebd7;
-  height: 100vh;
+  min-height: 100vh;
+ 
   display: flex;
   justify-content: center;
 }

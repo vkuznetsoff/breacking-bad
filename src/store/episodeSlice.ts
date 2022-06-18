@@ -1,4 +1,4 @@
-import { ActionCreatorWithPayload, createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface EpisodeType {
   episode_id: Number;
@@ -13,6 +13,7 @@ export interface EpisodeType {
 interface IininState {
   episodes: EpisodeType[];
   loading: boolean;
+  getEpisodes: boolean;
   error: String | null;
 }
 
@@ -67,6 +68,7 @@ interface IininState {
 const initState: IininState = {
   episodes: [],
   loading: false,
+  getEpisodes: false,
   error: null,
 };
 
@@ -112,10 +114,12 @@ const episodeSlice = createSlice({
 
     sortEpisodesAsc(state) {
         state.episodes.sort((a:EpisodeType , b: EpisodeType ) => +a.charactersLen - +(b.charactersLen))
+         
     },
 
     sortEpisodesDesc(state) {
         state.episodes.sort((a:EpisodeType , b: EpisodeType ) => +b.charactersLen - +(a.charactersLen))
+       
     },
 
     incCharacters(state, action: PayloadAction<Number>) {
@@ -144,6 +148,7 @@ const episodeSlice = createSlice({
       .addCase(fetchEpisodes.fulfilled, (state, action) => {
         state.episodes = action.payload
         state.episodes.map(ep => ep.charactersLen = ep.characters.length)
+        state.getEpisodes = true
         state.loading = false
       })
 
