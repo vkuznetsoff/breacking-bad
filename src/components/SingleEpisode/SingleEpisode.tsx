@@ -1,16 +1,22 @@
 
 import { FC } from "react";
-import { EpisodeType } from "../../types";
+import { EpisodeType, removeEpisode } from "../../store/episodeSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+
 import "./SingleEpisode.css";
 
+interface ISingleEpisodeProps {
+  item: EpisodeType
+}
 
-
-const initState = [
-
-]
-
-const SingleEpisode: FC<{ item: EpisodeType }> = ({ item }) => {
+const SingleEpisode: FC<ISingleEpisodeProps> = ({ item }) => {
+  const dispatch = useAppDispatch()
   const lable = 'Персонажей'
+
+  const removeBtnClick = (id: String): void => {
+    debugger
+    dispatch(removeEpisode(id))
+  }
 
   return (
     <div className="episode__wrapper">
@@ -28,7 +34,8 @@ const SingleEpisode: FC<{ item: EpisodeType }> = ({ item }) => {
 
 
 
-        <div className="content__removebtn">Удалить</div>
+        <div className="content__removebtn" 
+        onClick={() => removeBtnClick(item.episode_id)}>Удалить</div>
 
       </div>
     </div>

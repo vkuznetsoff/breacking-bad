@@ -38,4 +38,6 @@
 
 .charactres__label {}
 
-.content__removebtn {}
+.content__removebtn {
+    cursor: pointer;
+}

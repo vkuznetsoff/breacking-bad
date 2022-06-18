@@ -1,15 +1,19 @@
 
-import { EpisodeType } from "../../types";
+
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
 
-import "./Episodes.css";
+
 import { RootState } from "../../store";
 import SingleEpisode from "../SingleEpisode/SingleEpisode";
+import { FC } from "react";
+import { fetchEpisodes } from "../../store/episodeSlice";
+
+import "./Episodes.css";
 
 
 
-const Episodes = () => {
-  const episodes = useAppSelector((state: RootState) => state.episodes.episodes)
+const Episodes: FC = () => {
+  const {episodes, loading, error} = useAppSelector((state: RootState) => state.episodes)
   const dispatch = useAppDispatch()
 
   // const  descSort: Number = (a: Number, b: Number) => {
@@ -19,7 +23,9 @@ const Episodes = () => {
   // }
 
   // episodes.sort( descSort(a.character.length,b.character.length)  )
-  
+
+
+
   return (
     <div className="wrapper">
       <div className="header">
@@ -28,9 +34,11 @@ const Episodes = () => {
       <div className="content">
 
         <div className="content__btn">
-          <div className="btn__text">Загрузить эпизоды</div>
+          <div className="btn__text" onClick={() => dispatch(fetchEpisodes())}>Загрузить эпизоды</div>
         </div>
 
+        {loading && <h2>Loading...</h2>}
+        {error && <h1>{error}</h1>}
         <div className="content__episodes">
           <div className="sort__btns">
             <div className="content__btn sortbtn">По возрастанию</div>
