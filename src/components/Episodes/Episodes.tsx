@@ -46,7 +46,7 @@ const Episodes: FC = () => {
           </div>
 
           {
-            episodes.map(e => <SingleEpisode item={e} />)
+            episodes.map(e => <SingleEpisode key={String(e.episode_id)} item={e} />)
           }
         </div>
 

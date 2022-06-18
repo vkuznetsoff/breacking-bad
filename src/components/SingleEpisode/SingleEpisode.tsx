@@ -1,7 +1,7 @@
 
 import { FC } from "react";
-import { EpisodeType, removeEpisode } from "../../store/episodeSlice";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { decCharacters, EpisodeType, incCharacters, removeEpisode } from "../../store/episodeSlice";
+import { useAppDispatch } from "../../store/hooks";
 
 import "./SingleEpisode.css";
 
@@ -13,10 +13,17 @@ const SingleEpisode: FC<ISingleEpisodeProps> = ({ item }) => {
   const dispatch = useAppDispatch()
   const lable = 'Персонажей'
 
-  const removeBtnClick = (id: String): void => {
-    debugger
+  const removeBtnClick = (id: Number): void => {
     dispatch(removeEpisode(id))
   }
+
+ const plusHandle = (id: Number): void => {
+  dispatch(incCharacters(id))
+ }
+
+ const minusHandle = (id: Number): void => {
+  dispatch(decCharacters(id))
+}
 
   return (
     <div className="episode__wrapper">
@@ -26,9 +33,9 @@ const SingleEpisode: FC<ISingleEpisodeProps> = ({ item }) => {
       <div className="episode__content">
 
         <div className="content__characters">
-          <div className="characters__btn">-</div>
-          <div className="characters__count">{item.characters.length}</div>
-          <div className="characters__btn">+</div>
+          <div className="characters__btn" onClick={() =>minusHandle(item.episode_id)}>-</div>
+          <div className="characters__count">{String(item.charactersLen)}</div>
+          <div className="characters__btn" onClick={() =>plusHandle(item.episode_id)}>+</div>
           <div className="charactres__label"> {lable}</div>
         </div>
 
