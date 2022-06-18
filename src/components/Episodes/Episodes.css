@@ -1,7 +1,11 @@
+.header {
+    text-align: center;
+}
+
 .content {
-display: flex;
-flex-direction: column;
-align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .content__episodes {
@@ -20,13 +24,14 @@ align-items: center;
     cursor: pointer;
 }
 
-.sort__btns{
+.sort__btns {
     display: flex;
-    
+
 }
 
 .sortbtn {
-    padding: 10px;;
+    padding: 10px;
+    ;
     margin: 5px;
     font-size: 16pt;
     color: black;
