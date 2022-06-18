@@ -10,19 +10,9 @@ import { fetchEpisodes, sortEpisodesAsc, sortEpisodesDesc } from "../../store/ep
 
 import "./Episodes.css";
 
-
-
 const Episodes: FC = () => {
   const { episodes, loading, error, getEpisodes } = useAppSelector((state: RootState) => state.episodes)
   const dispatch = useAppDispatch()
-
-  // const  descSort: Number = (a: Number, b: Number) => {
-  //   if (a > b) return 1;
-  //   if (a === b) return 0;
-  //   if (a < b) return -1;
-  // }
-
-  // episodes.sort( descSort(a.character.length,b.character.length)  )
 
   const acsSortBtn = () => {
     dispatch(sortEpisodesAsc())
@@ -34,29 +24,35 @@ const Episodes: FC = () => {
 
   return (
     <div className="wrapper">
+
       <div className="header">
         <h1>Список эпизодов Breaking Bad</h1>
       </div>
+
       <div className="content">
 
-        {!getEpisodes && <div className="content__btn">
-          <div className="btn__text" onClick={() => dispatch(fetchEpisodes())}>Загрузить эпизоды</div>
-        </div>}
+        {(!getEpisodes || episodes.length === 0) ? (
+          <div>
+            <div className="content__btn">
+              <div className="btn__text" onClick={() => dispatch(fetchEpisodes())}>Загрузить эпизоды</div>
+            </div>
 
-        {loading && <h2>Loading...</h2>}
-        
-        {error && <h1>{error}</h1>}
+            {loading && <h2>Loading...</h2>}
 
-        {getEpisodes && <div className="content__episodes">
+            {error && <h3>{error}</h3>}
+          </div>
+        )
+       : <div className="content__episodes">
           <div className="sort__btns">
-            <div className="content__btn sortbtn" onClick={acsSortBtn}>По возрастанию</div>
-            <div className="content__btn sortbtn" onClick={descSortBtn}>По убыванию</div>
+            <div className="content__btn sortbtn" onClick={acsSortBtn}>По возрастанию персонажей</div>
+            <div className="content__btn sortbtn" onClick={descSortBtn}>По убыванию персонажей</div>
           </div>
 
           {
             episodes.map(e => <SingleEpisode key={String(e.episode_id)} item={e} />)
           }
-        </div>}
+        </div>
+        }
 
       </div>
     </div>

@@ -1,11 +1,3 @@
-.wrapper {
-
-}
-
-.header {
-
-}
-
 .content {
 display: flex;
 flex-direction: column;
@@ -16,8 +8,6 @@ align-items: center;
     display: flex;
     flex-direction: column;
 }
-
-
 
 .content__btn {
     background: #CA6F1E;

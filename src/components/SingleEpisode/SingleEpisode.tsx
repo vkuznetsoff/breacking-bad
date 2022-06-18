@@ -21,7 +21,7 @@ const SingleEpisode: FC<ISingleEpisodeProps> = ({ item }) => {
   }
 
   const minusHandle = (id: Number): void => {
-    dispatch(decCharacters(id))
+    if (item.charactersLen > 0) dispatch(decCharacters(id))
   }
 
   const createLabel = (n: number): String => {
@@ -35,24 +35,24 @@ const SingleEpisode: FC<ISingleEpisodeProps> = ({ item }) => {
 
   return (
     <div className="episode__wrapper">
+
       <div className="episode__header">
-        <h3>{`Эпизод №${item.episode_id}`}</h3>
+        {`Эпизод №${item.episode_id}`}
       </div>
+
       <div className="episode__content">
 
-        <div className="episode__bottom">
-          <div className="content__characters">
-            <div className="characters__btn" onClick={() => minusHandle(item.episode_id)}>-</div>
-            <div className="characters__count">{String(item.charactersLen)}</div>
-            <div className="characters__btn" onClick={() => plusHandle(item.episode_id)}>+</div>
-            <div className="charactres__label"> {createLabel(item.charactersLen)}</div>
-          </div>
-
-          <div className="content__removebtn"
-            onClick={() => removeBtnClick(item.episode_id)}>Удалить</div>
+        <div className="content__characterscounter">
+          <div className="characters__btn" onClick={() => minusHandle(item.episode_id)}>-</div>
+          <div className="characters__count">{String(item.charactersLen)}</div>
+          <div className="characters__btn" onClick={() => plusHandle(item.episode_id)}>+</div>
+          <div className="charactres__label"> {createLabel(item.charactersLen)}</div>
         </div>
-      </div>
 
+        <div className="content__removebtn"
+          onClick={() => removeBtnClick(item.episode_id)}>Удалить</div>
+      </div>
+      
     </div>
   );
 };

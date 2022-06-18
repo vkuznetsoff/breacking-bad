@@ -17,54 +17,6 @@ interface IininState {
   error: String | null;
 }
 
-// const initEpisodes: EpisodeType[] = [
-//   {
-//     episode_id: "1",
-//     title: "Pilot",
-//     season: "1",
-//     characters: [
-//       "Walter White",
-//       "Jesse Pinkman",
-//       "Skyler White",
-//       "Hank Schrader",
-//       "Marie Schrader",
-//       "Walter White Jr.",
-//       "Krazy-8",
-//       "Bogdan Wolynetz",
-//     ],
-//     episode: "1",
-//   },
-//   {
-//     episode_id: "2",
-//     title: "Cat's in the Bag...",
-//     season: "1",
-//     characters: [
-//       "Walter White",
-//       "Jesse Pinkman",
-//       "Skyler White",
-//       "Walter White Jr.",
-//       "Krazy-8",
-//     ],
-//     episode: "2",
-//   },
-//   {
-//     episode_id: "3",
-//     title: "...And the Bag's in the River",
-//     season: "1",
-//     characters: [
-//       "Walter White",
-//       "Jesse Pinkman",
-//       "Skyler White",
-//       "Hank Schrader",
-//       "Marie Schrader",
-//       "Walter White Jr.",
-//       "Krazy-8",
-//       "Gretchen Schwartz",
-//     ],
-//     episode: "3",
-//   },
-// ];
-
 const initState: IininState = {
   episodes: [],
   loading: false,
@@ -72,18 +24,8 @@ const initState: IininState = {
   error: null,
 };
 
-// const sortFn = (a: EpisodeType, b: EpisodeType, type: String): Number | undefined => {
-//     if (type === "asc") {
-//         return +a.episode_id - +(b.episode_id)
-//     }
 
-//     if (type === "desc") {
-//        return +b.episode_id - +(a.episode_id) 
-//     }
-    
-// }
-
-export const fetchEpisodes = createAsyncThunk<EpisodeType[], void, { rejectValue: string }>(
+export const fetchEpisodes = createAsyncThunk<EpisodeType[], void, {rejectValue: string }>(
   "episodes/fetchEpisodes",
 
   async function (_, { rejectWithValue}) {
@@ -135,7 +77,6 @@ const episodeSlice = createSlice({
             episode.charactersLen = episode.charactersLen - 1
         }
     },
-
   },
 
   extraReducers: (builder) => {
@@ -160,6 +101,7 @@ const episodeSlice = createSlice({
 
 });
 
-export const { removeEpisode, incCharacters, decCharacters, sortEpisodesAsc, sortEpisodesDesc } = episodeSlice.actions;
+export const { removeEpisode, incCharacters, decCharacters, 
+  sortEpisodesAsc, sortEpisodesDesc } = episodeSlice.actions;
 
 export default episodeSlice.reducer;

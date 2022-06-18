@@ -1,32 +1,41 @@
 .episode__wrapper {
     border: 1px solid;
     border-radius: 10px;
-    background: #99A3A4;
+    background: rgba(153, 163, 164, 0.9);
     color: #1C2833;
     width: 600px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    padding: 20px 30px;
 }
 
 .episode__header {
-    margin-left: 15px;
-    line-height: 8pt;
+    /* margin-left: 15px; */
+    font-weight: 500;
 }
 
 .episode__content {
     display: flex;
+    width: 100%;
     justify-content: space-between;
+    align-items: baseline;
+    margin: 10px 0;
+    font-size: 18pt;
+    user-select: none;
 }
 
-.content__characters {
+.content__characterscounter {
     display: flex;
+    flex-direction: row;
     align-items: baseline;
 }
 
+.characters__count {
+    margin: 0 5px;
+}
+
 .characters__btn {
-    margin: 0 10px;
     background: #2E86C1;
     color: #becdcf;
-    /* padding: 0 10px; */
     width: 30px;
     text-align: center;
     font-weight: 400;
@@ -34,21 +43,14 @@
     border-radius: 10px;
 }
 
-.episode__bottom{
-    width: 100%;
-    display: flex;
-    flex-direction:  row;
-    justify-content: space-between; 
-    align-items: baseline;
-    margin: 15px;
-   
-    
+.charactres__label {
+    margin-left: 5px;
 }
 
 .content__removebtn {
     cursor: pointer;
-    background: #EC7063;
+    background: #E74C3C;
     border-radius: 10px;
-    padding: 10px;
-    
+    font-weight: 500;
+    padding: 10px;    
 }
