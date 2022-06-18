@@ -3,6 +3,7 @@
   min-height: 100vh;
   background-size: 100%;
   font-size: 24pt;
+  min-width: 420px;
 }
 
 .app__opacity {
