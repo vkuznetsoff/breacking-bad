@@ -24,3 +24,16 @@
     padding: 15px;
     cursor: pointer;
 }
+
+.sort__btns{
+    display: flex;
+    
+}
+
+.sortbtn {
+    padding: 10px;;
+    margin: 5px;
+    font-size: 16pt;
+    color: black;
+    cursor: pointer
+}

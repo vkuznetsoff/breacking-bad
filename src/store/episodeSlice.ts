@@ -49,9 +49,17 @@ const initEpisodes: EpisodeType[] = [
         episode: "3"
     }
 ]
+
+const initState = {
+    episodes: initEpisodes,
+    isFetching: false
+}
+
+// const fetchEpiodes()
+
 const episodeSlice = createSlice({
     name: "episodes",
-    initialState: initEpisodes,
+    initialState: initState,
     
     reducers: {
         addEpisode(state, action) {
@@ -64,6 +72,7 @@ const episodeSlice = createSlice({
     }
 
 })
+
 
 export const {addEpisode, removeEpisode} = episodeSlice.actions
 

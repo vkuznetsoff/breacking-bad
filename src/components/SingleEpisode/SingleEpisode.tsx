@@ -1,24 +1,35 @@
 
 import { FC } from "react";
 import { EpisodeType } from "../../types";
-import "./SingleEpisodes.css";
+import "./SingleEpisode.css";
 
 
 
 const initState = [
-    
+
 ]
 
-const SingleEpisode: FC<{ item: EpisodeType }>= ({item}) => {
+const SingleEpisode: FC<{ item: EpisodeType }> = ({ item }) => {
+  const lable = 'Персонажей'
+
   return (
-    <div className="wrapper">
-      <div className="header">
-        <h1>{`Эпизод №${item.episode_id}`}</h1>
+    <div className="episode__wrapper">
+      <div className="episode__header">
+        <h3>{`Эпизод №${item.episode_id}`}</h3>
       </div>
-      <div className="content">
-        <div className="content__btn">
-          <div className="btn__text">Загрузить эпизоды</div>
+      <div className="episode__content">
+
+        <div className="content__characters">
+          <div className="characters__btn">-</div>
+          <div className="characters__count">{item.characters.length}</div>
+          <div className="characters__btn">+</div>
+          <div className="charactres__label"> {lable}</div>
         </div>
+
+
+
+        <div className="content__removebtn">Удалить</div>
+
       </div>
     </div>
   );

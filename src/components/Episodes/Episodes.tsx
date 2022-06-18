@@ -1,67 +1,47 @@
-import { useSelector } from "react-redux";
-import { EpisodeType } from "../../types";
-import "./Episodes.css";
 
-// const initState: EpisodeType[] = [
-//     {
-//         episode_id: 1,
-//         title: "Pilot",
-//         season: "1",
-//         characters: [
-//             "Walter White",
-//             "Jesse Pinkman",
-//             "Skyler White",
-//             "Hank Schrader",
-//             "Marie Schrader",
-//             "Walter White Jr.",
-//             "Krazy-8",
-//             "Bogdan Wolynetz"
-//         ],
-//         episode: "1"
-//     },
-//     {
-//         episode_id: 2,
-//         title: "Cat's in the Bag...",
-//         season: "1",
-//         characters: [
-//             "Walter White",
-//             "Jesse Pinkman",
-//             "Skyler White",
-//             "Walter White Jr.",
-//             "Krazy-8"
-//         ],
-//         episode: "2",
-//     },
-//     {
-//         episode_id: 3,
-//         title: "...And the Bag's in the River",
-//         season: "1",
-//         characters: [
-//             "Walter White",
-//             "Jesse Pinkman",
-//             "Skyler White",
-//             "Hank Schrader",
-//             "Marie Schrader",
-//             "Walter White Jr.",
-//             "Krazy-8",
-//             "Gretchen Schwartz"
-//         ],
-//         episode: "3"
-//     }
-// ]
+import { EpisodeType } from "../../types";
+import { useAppSelector, useAppDispatch } from '../../store/hooks'
+
+import "./Episodes.css";
+import { RootState } from "../../store";
+import SingleEpisode from "../SingleEpisode/SingleEpisode";
+
+
 
 const Episodes = () => {
-    const episodes = useSelector(state => state.episodes.episodes)
+  const episodes = useAppSelector((state: RootState) => state.episodes.episodes)
+  const dispatch = useAppDispatch()
+
+  // const  descSort: Number = (a: Number, b: Number) => {
+  //   if (a > b) return 1;
+  //   if (a === b) return 0;
+  //   if (a < b) return -1;
+  // }
+
+  // episodes.sort( descSort(a.character.length,b.character.length)  )
+  
   return (
     <div className="wrapper">
       <div className="header">
         <h1>Список эпизодов Breaking Bad</h1>
       </div>
       <div className="content">
+
         <div className="content__btn">
           <div className="btn__text">Загрузить эпизоды</div>
-
         </div>
+
+        <div className="content__episodes">
+          <div className="sort__btns">
+            <div className="content__btn sortbtn">По возрастанию</div>
+            <div className="content__btn sortbtn">По убыванию</div>
+          </div>
+
+          {
+            episodes.map(e => <SingleEpisode item={e} />)
+          }
+        </div>
+
       </div>
     </div>
   );
